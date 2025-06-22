@@ -25,6 +25,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'is_admin', // For admin dashboard access
+        'profile_picture' 
     ];
 
     /**
