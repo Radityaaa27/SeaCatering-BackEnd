@@ -3,31 +3,38 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Subscription extends Model
 {
     protected $fillable = [
-        'user_id', 
-        'meal_plan_id', 
+        'user_id',
+        'name',
+        'phone',
+        'meal_plan_id',
         'meal_types',
         'delivery_days',
         'allergies',
-        'total_price'
+        'total_price',
+        'status'
     ];
-    
+
     protected $casts = [
         'meal_types' => 'array',
-        'delivery_days' => 'array'
+        'delivery_days' => 'array',
     ];
-    
-    public function mealPlan(): BelongsTo
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function mealPlan()
     {
         return $this->belongsTo(MealPlan::class);
     }
-    
-    public function user(): BelongsTo
+
+    public function orders()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Order::class);
     }
 }

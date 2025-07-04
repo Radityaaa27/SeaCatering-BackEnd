@@ -87,4 +87,8 @@ class User extends Authenticatable
             ->values()
             ->toArray();
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
